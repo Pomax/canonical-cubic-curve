@@ -4,5 +4,8 @@ static class Point {
     x=_x; 
     y=_y;
   }
+  boolean over(float x, float y) {
+    return abs(x-this.x) < 3 && abs(y-this.y) < 3;
+  }
 }
 
