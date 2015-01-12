@@ -93,8 +93,10 @@ void inset(Point p1, Point p2, Point p3, Point p4) {
   line(p1.x,p1.y,p2.x,p2.y);
   line(p3.x,p3.y,p4.x,p4.y);
   stroke(0);
+  ellipse(p1.x,p1.y, 3, 3);
   ellipse(p2.x,p2.y, 3, 3);
   ellipse(p3.x,p3.y, 3, 3);
+  ellipse(p4.x,p4.y, 3, 3);
   noFill();  
   bezier(
     p1.x, p1.y, 
@@ -102,6 +104,9 @@ void inset(Point p1, Point p2, Point p3, Point p4) {
     p3.x, p3.y, 
     p4.x, p4.y
   );
+  
+  textAlign(LEFT, TOP);
+  textFont(createFont("Arial", 24));
   fill(50);
   text("true curve", 10, 10);
 }  
@@ -109,8 +114,10 @@ void inset(Point p1, Point p2, Point p3, Point p4) {
 // mouse interaction
 
 void handlePointMovement() {
-  tomove.x = refpoint.x + dx;
-  tomove.y = refpoint.y + dy;
+  if(tomove != null) {
+    tomove.x = refpoint.x + dx;
+    tomove.y = refpoint.y + dy;
+  }
 }
 
 boolean mouseDown = false,
@@ -137,6 +144,7 @@ void mousePressed() {
 }
 
 void mouseMoved() {
+  cursor(ARROW);
   for(Point p: pts) {
     if(p.over(mouseX, mouseY)) {
       cursor(HAND);

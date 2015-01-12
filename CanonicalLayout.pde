@@ -50,22 +50,13 @@ static class CanonicalLayout {
     // Do some canonical curve work, following Stone and DeRose,
     // "A Geometric Characterization of Parametric Cubic Curves"
     float B3x, B3y, A, B, C, discriminant, epsilon = 0.01, px=-w*2, py=-h*2;
-    for (float x=-10; x<=10; x+=0.01) {
-      for (float y=-10; y<=10; y+=0.01) {
-        B3x = x;
-        B3y = y;
-        A = 9 * (x + y - 3);
-        B = -9 * (x - 3);
-        C = -9;
-        // Cusp line
-        discriminant = x*x - 2 * x + 4 * y - 3;
-        if (-epsilon < discriminant && discriminant < epsilon) {
-          buffer.line(px, py, x*s, y*s);
-          px = x*s;
-          py = y*s;
-          if (x<1) buffer.vertex(px, py);
-        }
-      }
+    for (float y, x=-10; x<=1; x+=0.01) {
+      // Cusp parabola:
+      y = (-x*x + 2*x + 3)/4;  
+      buffer.line(px, py, x*s, y*s);
+      px = x*s;
+      py = y*s;
+      buffer.vertex(px, py);
     }
 
     // loop/arch transition boundary, elliptical section
@@ -99,14 +90,13 @@ static class CanonicalLayout {
     buffer.textFont(sketch.createFont("Arial", 24));
     buffer.text("Canonical Curve", w*0.75, -h+20);
 
-    buffer.text("simple arch", 100, -150);
+    buffer.text("simple arch (no inflections)", 200, -150);
     buffer.text("loop", -175, -175);
-    buffer.text("double inflection", -270, -50);
+    buffer.text("double inflection", -270, -30);
     buffer.text("single inflection", 0, 250);
-    buffer.text("no inflections", 320, 65);
 
     buffer.textFont(sketch.createFont("Arial", 16));
-    buffer.text("cusp line", 180, 80);
+    buffer.text("cusp line", -75, 55);
     buffer.text("loop on t=0 line", -100, -250);
     buffer.text("loop on t=1 line", 80, 60);
 
