@@ -4,4 +4,4 @@ Canonical cubic curve analysis based on the 1989 paper ["A Geometric Characteriz
 
 Implementation uses [Processing](http://processing.org)
 
-![screenshot](https://cloud.githubusercontent.com/assets/177243/5696830/c76b0d9e-9992-11e4-9c45-bcbf45682e91.png)
+![screenshot](https://cloud.githubusercontent.com/assets/177243/5698926/e5f6b416-99ce-11e4-931d-19b6d5ea4096.png)
